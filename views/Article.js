@@ -1,6 +1,7 @@
 import React from "react";
 import { Text, FlatList, Image, View, StyleSheet, Dimensions } from "react-native";
 import XHR from "../utils/XHR";
+import DateHumanizer from '../utils/DateHumanizer';
 
 const winWidth = Dimensions.get('window').width,
     winHeight = Dimensions.get('window').height
@@ -27,16 +28,40 @@ export default class Article extends React.Component {
 
         return(
             <View style={styles.container}>
-                <Text>Liste des articles :</Text>
+                <Text style={styles.bigTitle}>Liste des articles :</Text>
                 <FlatList
                     data={this.state.data}
                     renderItem={( {item} ) =>
                         <View style={styles.article}>
-                            <Text>{item.title}</Text>
-                            <Text>Publié par {item.author} le {item.date}</Text>
-                            <Text>{item.chapo}</Text>
-                            <Image source={{uri: item.image}} style={styles.img}/>
-                            <Text>{item.content}</Text>
+                            <Text
+                                style={styles.title}
+                            >
+                                {item.title}
+                            </Text>
+                            <View style={styles.author_date}>
+                                <Text style={styles.details}>
+                                    Publié par {item.author}
+                                </Text>
+                                <Text style={styles.details}>
+                                    le {DateHumanizer(item.date)}
+                                </Text>
+                            </View>
+                            <Text
+                                style={styles.chapo}
+                            >
+                                {item.chapo}
+                            </Text>
+                            <View style={styles.imgContainer}>
+                                <Image
+                                    source={{uri: item.image}}
+                                    style={styles.img}
+                                />
+                            </View>
+                            <Text
+                                style={styles.content}
+                            >
+                                {item.content}
+                            </Text>
                         </View>
                     }
                 />
@@ -48,13 +73,78 @@ export default class Article extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 22
+        paddingTop: 20
+    },
+    bigTitle: {
+        textAlign: 'center',
+        fontSize: 34,
+        marginBottom: 20,
+        fontWeight: 'bold'
     },
     article: {
-        padding: 10,
-        fontSize: 18
+        padding: 20,
+        margin: 20,
+        fontSize: 18,
+        marginBottom: 30,
+        backgroundColor: '#E7E7E7',
+        borderRadius: 10,
+        borderStyle: 'solid',
+        borderWidth: 1,
+        borderColor: '#fff',
+        shadowOffset: { width: 15, height: 15 },
+        shadowColor: 'black',
+        shadowOpacity: 1,
+        elevation: 4,
+    },
+    title: {
+        fontWeight: 'bold',
+        fontSize: 24,
+        textAlign: 'center',
+        paddingBottom: 20,
+        borderStyle: 'solid',
+        borderBottomWidth: 1,
+        borderBottomColor: '#fff',
+    },
+    author_date: {
+        marginTop: 10,
+        marginBottom: 20,
+        paddingBottom: 10,
+        borderStyle: 'solid',
+        borderBottomWidth: 1,
+        borderBottomColor: '#fff',
+    },
+    details: {
+        opacity: 0.5,
+        fontStyle: 'italic',
+        fontSize: 12,
+        textAlign: 'center'
+    },
+    chapo: {
+        fontWeight: 'bold',
+        textAlign: 'justify',
+        fontSize: 18,
+    },
+    imgContainer: {
+        height: 200,
+        width: '100%',
+        marginTop: 20,
+        marginBottom: 10,
+        borderRadius: 10,
+        borderStyle: 'solid',
+        borderWidth: 1,
+        borderColor: '#A1A1A1',
+        overflow: 'hidden',
+        shadowOffset: { width: 15, height: 15 },
+        shadowColor: 'black',
+        shadowOpacity: 1,
+        elevation: 4,
+        backgroundColor: '#fff'
     },
     img: {
         height: 200
+    },
+    content: {
+        textAlign: 'justify',
+        marginTop: 20
     }
 })
