@@ -1,6 +1,9 @@
 import React from "react";
-import { Text, FlatList, Image, View, StyleSheet } from "react-native";
+import { Text, FlatList, Image, View, StyleSheet, Dimensions } from "react-native";
 import XHR from "../utils/XHR";
+
+const winWidth = Dimensions.get('window').width,
+    winHeight = Dimensions.get('window').height
 
 const call = 'http://api.eint-sandbox.fr?token=1234&'
 
@@ -21,7 +24,6 @@ export default class Article extends React.Component {
     }
 
     render() {
-        console.log(this.state.data)
 
         return(
             <View style={styles.container}>
@@ -29,7 +31,13 @@ export default class Article extends React.Component {
                 <FlatList
                     data={this.state.data}
                     renderItem={( {item} ) =>
-                        <Text>{item.title}</Text>
+                        <View style={styles.article}>
+                            <Text>{item.title}</Text>
+                            <Text>Publié par {item.author} le {item.date}</Text>
+                            <Text>{item.chapo}</Text>
+                            <Image source={{uri: item.image}} style={styles.img}/>
+                            <Text>{item.content}</Text>
+                        </View>
                     }
                 />
             </View>
@@ -44,7 +52,9 @@ const styles = StyleSheet.create({
     },
     article: {
         padding: 10,
-        fontSize: 18,
-        height: 44
+        fontSize: 18
+    },
+    img: {
+        height: 200
     }
 })
