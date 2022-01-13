@@ -28,7 +28,6 @@ export default class Article extends React.Component {
 
         return(
             <View style={styles.container}>
-                <Text style={styles.bigTitle}>Liste des articles :</Text>
                 <FlatList
                     data={this.state.data}
                     renderItem={( {item} ) =>
@@ -74,12 +73,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingTop: 20
-    },
-    bigTitle: {
-        textAlign: 'center',
-        fontSize: 34,
-        marginBottom: 20,
-        fontWeight: 'bold'
     },
     article: {
         padding: 20,
