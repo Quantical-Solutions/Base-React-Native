@@ -20,13 +20,6 @@ export default class Feeds extends React.Component {
         })
     }
 
-    componentDidMount() {
-
-        XHR('deezer', call, 'Guns n Roses', (response) => {
-            this.setState({data: response})
-        })
-    }
-
     render() {
 
         return(
