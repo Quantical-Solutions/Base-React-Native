@@ -29,7 +29,7 @@ export default class Feeds extends React.Component {
                 <Text>Liste des albums :</Text>
                 <FlatList
                     data={this.state.data}
-                    renderItem={({item}) =>
+                    renderItem={( {item} ) =>
                         <Text style={styles.item}>{item.album.title}</Text>
                     }
                 />

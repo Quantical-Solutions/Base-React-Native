@@ -16,19 +16,20 @@ export default class Article extends React.Component {
     componentDidMount() {
 
         XHR('fred', call, {table: 'articles'}, (response) => {
-            this.setState({data: response})
+            this.setState({data: response.data})
         })
     }
 
     render() {
+        console.log(this.state.data)
 
         return(
             <View style={styles.container}>
                 <Text>Liste des articles :</Text>
                 <FlatList
                     data={this.state.data}
-                    renderItem={({article}) =>
-                        {console.log(article)}
+                    renderItem={( {item} ) =>
+                        <Text>{item.title}</Text>
                     }
                 />
             </View>
