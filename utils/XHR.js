@@ -10,8 +10,6 @@ export default function XHR(type, domain, data, callback) {
         let response = xhr.response
         if (isJson(response)) {
 
-            console.log(response)
-
             let json = (type === 'deezer') ? JSON.parse(response).data : JSON.parse(response)
             callback(json)
 

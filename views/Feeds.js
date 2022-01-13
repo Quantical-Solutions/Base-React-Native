@@ -1,5 +1,5 @@
 import React from "react";
-import { Text } from "react-native";
+import { Text, FlatList, Image, View, StyleSheet } from "react-native";
 import XHR from "../utils/XHR";
 
 const call = 'https://api.deezer.com/search?q='
@@ -25,7 +25,27 @@ export default class Feeds extends React.Component {
         console.log(this.state.data)
 
         return(
-            <Text>Feeds</Text>
+            <View style={styles.container}>
+                <Text>Liste des albums :</Text>
+                <FlatList
+                    data={this.state.data}
+                    renderItem={({item}) =>
+                        <Text style={styles.item}>{item.album.title}</Text>
+                    }
+                />
+            </View>
         )
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        padding: 22
+    },
+    item: {
+        padding: 10,
+        fontSize: 18,
+        height: 44
+    }
+})
