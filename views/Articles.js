@@ -1,14 +1,11 @@
 import React from "react";
-import { Text, FlatList, Image, View, StyleSheet, Dimensions } from "react-native";
+import { Text, FlatList, Image, View, StyleSheet } from "react-native";
 import XHR from "../utils/XHR";
 import DateHumanizer from '../utils/DateHumanizer';
 
-const winWidth = Dimensions.get('window').width,
-    winHeight = Dimensions.get('window').height
-
 const call = 'http://api.eint-sandbox.fr?token=1234&'
 
-export default class Article extends React.Component {
+export default class Articles extends React.Component {
 
     constructor(props) {
         super(props);

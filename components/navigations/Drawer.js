@@ -1,6 +1,6 @@
 import React from "react";
 import { createDrawerNavigator, DrawerItemList } from "@react-navigation/drawer";
-import Article from "../../views/Article";
+import Articles from "../../views/Articles";
 import Feeds from "../../views/Feeds";
 import { SafeAreaView, View, Image, Dimensions } from "react-native";
 import Swiper from "./Swiper";
@@ -43,8 +43,8 @@ export default class Drawer extends React.Component {
             >
 
                 <MyDrawer.Screen
-                    name="Article"
-                    children={() => <Article />}
+                    name="Articles"
+                    children={() => <Articles />}
                 />
 
                 <MyDrawer.Screen
